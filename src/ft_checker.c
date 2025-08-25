@@ -69,7 +69,7 @@ int	check_on_lines(char *new_maps)
 	while (new_maps[j] && new_maps[j + 1])
 	{
 		if (new_maps[j] == ' ' && new_maps[j + 1] == '0')
-			return (printf("ito"), 0);
+			return (0);
 		else if (new_maps[j] == '0' && new_maps[j + 1] == ' ')
 			return (0);
 		else if (new_maps[j] == ' ' && (new_maps[j + 1] == 'N' || new_maps[j
