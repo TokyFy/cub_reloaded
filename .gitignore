@@ -1,0 +1,9 @@
+cub3D
+.idea
+*/*.a
+*/*.o
+*.o
+.clangd
+minilibix-linux
+minilibx-linux
+.zed
