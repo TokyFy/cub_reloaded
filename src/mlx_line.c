@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 static void	calculate_line_params(t_2d_vector *start, t_2d_vector *end,
 		float *x_increment, float *y_increment)

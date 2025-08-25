@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 float	vect_dist(t_2d_vector *from, t_2d_vector *to)
 {

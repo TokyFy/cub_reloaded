@@ -1,6 +1,6 @@
 #include "cub.h"
-#include <stdlib.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 char	**lst_to_str(t_list *map)
 {
@@ -66,12 +66,12 @@ int	parse_map_data(t_data *data)
 	}
 	else if (check_struct_map(0, 0, newmaps) == 0 || check_player(newmaps) != 1)
 	{
-		printf("erreur_maps or player\n");
+		printf("Map / Player error\n");
 		return (0);
 	}
 	else if (check_zero_position(newmaps) == 0)
 	{
-		printf("erreur m or p\n");
+		printf("Erreur m or p\n");
 		return (0);
 	}
 	return (1);
@@ -83,7 +83,6 @@ int	get_elements(t_data *data, int fd)
 	char	*tmp;
 
 	line = get_next_line(fd);
-
 	while (line)
 	{
 		tmp = remove_jumpline(line);
@@ -139,7 +138,6 @@ void	free_cub(t_cub *cub)
 		free_strs(cub->maps);
 	free_textures(cub);
 }
-
 
 void	*static_cub(void *ptr)
 {
@@ -203,32 +201,31 @@ void	destroy_image(void *mlx, t_mlx_image *img)
 	return ;
 }
 
-void bridge(t_data *data , t_cub *cub)
+void	bridge(t_data *data, t_cub *cub)
 {
 	cub->ceil_color = data->texture.cieling;
 	cub->floor_color = data->texture.floor;
-
-	cub->textures[0] = data->texture.path_ea;
-	cub->textures[1] = data->texture.path_no;
-	cub->textures[2] = data->texture.path_so;
-	cub->textures[3] = data->texture.path_we;
-
+	cub->textures[0] = ft_strdup(data->texture.path_ea);
+	cub->textures[1] = ft_strdup(data->texture.path_no);
+	cub->textures[2] = ft_strdup(data->texture.path_so);
+	cub->textures[3] = ft_strdup(data->texture.path_we);
 	cub->map_height = data->heigth;
 	cub->map_width = data->width;
 	cub->maps = data->maps;
 	data->maps = NULL;
-
 	cub->player = malloc(sizeof(t_player));
 	cub->player->direction = 0;
-	cub->player->pos_x = 2;
-	cub->player->pos_y = 2;
+	cub->player->pos_x = 1.5;
+	cub->player->pos_y = 1.5;
 }
 
-int parse_map(t_cub *cub , char *path)
+int	parse_map(t_cub *cub, char *path)
 {
-	t_data *data = malloc(sizeof(t_data));
-	int fd = -1;
+	t_data	*data;
+	int		fd;
 
+	data = malloc(sizeof(t_data));
+	fd = -1;
 	init_data(data);
 	if (!map_name(path))
 	{
@@ -244,20 +241,20 @@ int parse_map(t_cub *cub , char *path)
 		return (0);
 	}
 	init_data(data);
-	if (!get_elements(data, fd))
-		return 0;
-	bridge(data, cub);
+	int err = get_elements(data, fd);
+	if(err)
+		bridge(data, cub);
 	destroy_data(data);
 	free(data);
-	if(cub->ceil_color <= 0 || cub->floor_color <= 0)
-		return 0;
-	return 1;
+	if (!err || (cub->ceil_color <= 0 || cub->floor_color <= 0))
+		return (0);
+	return (err);
 }
 
 void	init_player(t_cub *cub)
 {
-    (void)(cub);
-    return;
+	(void)(cub);
+	return ;
 }
 
 int	main(int ac, char **av)
@@ -271,16 +268,20 @@ int	main(int ac, char **av)
 	}
 	cub.player = NULL;
 	cub.maps = NULL;
+	cub.textures[0] = NULL;
+	cub.textures[1] = NULL;
+	cub.textures[2] = NULL;
+	cub.textures[3] = NULL;
+
 	if (!parse_map(&cub, av[1]))
 	{
+		free_cub(&cub);
 		return (1);
 	}
 	init_cub(&cub);
 	init_player(&cub);
 	if (!load(&cub))
-	{
 		return (free_cub(&cub), 1);
-	}
 	static_cub(&cub);
 	mlx_hook(cub.win, 02, 1L << 0, on_key_press, &cub);
 	mlx_hook(cub.win, 17, 0, on_exit_game, &cub);

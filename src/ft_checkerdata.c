@@ -21,8 +21,8 @@ int	map_name(char *av)
 		i++;
 	if (i < 5)
 		return (0);
-	if (av[i - 4] == '.' && av[i - 3] == 'c' && av[i - 2] == 'u'
-		&& av[i - 1] == 'b')
+	if (av[i - 4] == '.' && av[i - 3] == 'c' && av[i - 2] == 'u' && av[i
+			- 1] == 'b')
 		return (1);
 	return (0);
 }
@@ -66,26 +66,32 @@ int	check_player(char **maps)
 
 int	check_element(t_data *data)
 {
-	if (data->texture.path_no == NULL)
+	if (data->texture.path_no == NULL || data->texture.path_no == (char*)-1)
+    {
+        data->texture.path_no = NULL;
 		return (printf("PATH_NO ERROR\n"), 0);
-	else if (data->texture.path_so == NULL)
+    }
+	else if (data->texture.path_so == NULL || data->texture.path_so == (char*)-1)
+    {
+        data->texture.path_so = NULL;
 		return (printf("PATH_SO ERROR\n"), 0);
-	else if (data->texture.path_ea == NULL)
-	{
-		printf("PATH_EA ERROR\n");
-		return (0);
-	}
-	else if (data->texture.path_we == NULL)
-	{
-		printf("PATH_WE ERROR\n");
-		return (0);
-	}
-	else if (data->texture.cieling == -1)
+    }
+	else if (data->texture.path_ea == NULL || data->texture.path_ea == (char*)-1)
+    {
+        data->texture.path_ea = NULL;
+		return (printf("PATH_EA ERROR\n") , 0);
+    }
+	else if (data->texture.path_we == NULL || data->texture.path_we == (char*)-1)
+    {
+        data->texture.path_we = NULL;
+		return (printf("PATH_WE ERROR\n") , 0);
+    }
+	else if (data->texture.cieling <= -1)
 	{
 		printf("PATH_CIELING ERROR\n");
 		return (0);
 	}
-	else if (data->texture.floor == -1)
+	else if (data->texture.floor <= -1)
 	{
 		printf("PATH_FLOOR ERROR\n");
 		return (0);

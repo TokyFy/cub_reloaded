@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 void	minimaps_direction(const t_cub *cub, t_2d_vector zero)
 {

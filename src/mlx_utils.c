@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 void	put_pixel_img(t_mlx_image *img, unsigned int x, unsigned int y,
 		int color)
@@ -93,5 +93,5 @@ t_cub	*mlx_windows(int width, int height, char *title)
 unsigned int	get_pixel_img(t_mlx_image *img, int x, int y)
 {
 	return (*(unsigned int *)((img->addr + (y * img->line_length) + (x
-				* img->bits_per_pixel / 8))));
+						* img->bits_per_pixel / 8))));
 }

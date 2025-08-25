@@ -72,9 +72,9 @@ int	check_on_lines(char *new_maps)
 			return (printf("ito"), 0);
 		else if (new_maps[j] == '0' && new_maps[j + 1] == ' ')
 			return (0);
-		else if (new_maps[j] == ' ' && (new_maps[j + 1] == 'N'
-				|| new_maps[j + 1] == 'S' || new_maps[j + 1] == 'E'
-				|| new_maps[j + 1] == 'W'))
+		else if (new_maps[j] == ' ' && (new_maps[j + 1] == 'N' || new_maps[j
+					+ 1] == 'S' || new_maps[j + 1] == 'E' || new_maps[j
+					+ 1] == 'W'))
 			return (0);
 		else if ((new_maps[j] == 'N' || new_maps[j] == 'S' || new_maps[j] == 'E'
 				|| new_maps[j] == 'W') && new_maps[j + 1] == ' ')
@@ -82,8 +82,8 @@ int	check_on_lines(char *new_maps)
 		j++;
 	}
 	if ((new_maps[j] == '0' || new_maps[j] == 'N' || new_maps[j] == 'S'
-			|| new_maps[j] == 'W' || new_maps[j] == 'E')
-		&& new_maps[j + 1] == '\0')
+			|| new_maps[j] == 'W' || new_maps[j] == 'E') && new_maps[j
+			+ 1] == '\0')
 		return (0);
 	return (1);
 }

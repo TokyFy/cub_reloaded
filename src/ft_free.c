@@ -42,5 +42,9 @@ void	free_map(t_list *map)
 
 void	destroy_data(t_data *data)
 {
+	free(data->texture.path_ea);
+	free(data->texture.path_no);
+	free(data->texture.path_so);
+	free(data->texture.path_we);
 	free_maps(data->maps);
 }

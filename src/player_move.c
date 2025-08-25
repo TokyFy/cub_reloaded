@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 void	set_player_position(float dx, float dy)
 {

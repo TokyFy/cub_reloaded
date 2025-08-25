@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 static void	get_vertical_step(double angle, float *step_x, float *step_y)
 {

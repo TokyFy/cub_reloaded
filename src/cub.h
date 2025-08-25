@@ -13,12 +13,12 @@
 #ifndef CUB_H
 # define CUB_H
 
-# include "libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "libft.h"
 # include <math.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdio.h>
 
 # define WIN_WIDTH 1040
 # define WIN_HEIGTH 650
@@ -33,23 +33,22 @@
 # define KEY_S 115
 # define KEY_D 100
 
-
 typedef struct s_texture
 {
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
 	char		*path_ea;
-	int	        floor;
-	int	        cieling;
+	int			floor;
+	int			cieling;
 
-}	t_texture;
+}				t_texture;
 
 typedef struct s_data
 {
 	t_texture	texture;
-	int	        heigth;
-	int         width;
+	int			heigth;
+	int			width;
 	t_list		*map;
 	char		**maps;
 }				t_data;
@@ -138,37 +137,35 @@ void			ray_vert_draw(t_cub *cub, int nth, t_2d_vector *from,
 					t_2d_vector *to);
 void			destroy_image(void *mlx, t_mlx_image *img);
 void			normalize_maps(t_cub *cub);
-void	free_cub(t_cub *cub);
-void	init_player(t_cub *cub);
+void			free_cub(t_cub *cub);
+void			init_player(t_cub *cub);
 
-
-
-int			ft_isspace(char c);
-int			ft_compare(char *str, char *string);
-char		*b_space(int n);
-char		**new_maps(t_data *data);
-void		add_the_line(t_list *head, char *line);
-char		*remove_jumpline(char *str);
-int			rgb_to_color(int r, int g, int b);
-int			get_rgb(char *str, int j, int count, int val);
-int			check_struct_map(int i, int curser, char **maps);
-int			check_zero_position(char **new_maps);
-int			check_right_left_wall(char **array);
-int			check_first_last_line(t_data *data);
-int			check_element(t_data *data);
-int			check_player(char **maps);
-int			check_map_or_elt(char *str);
-int			map_name(char *av);
-char		**lst_to_str(t_list *map);
-void		parse_info(t_data *data, char *tmp);
-int			parse_map_data(t_data *data);
-int			get_elements(t_data *data, int fd);
-void		init_elmt(t_data *data, char **str);
-void		init_map(t_list **map, char *line);
-void		init_texture(t_texture *texture);
-void		init_data(t_data *data);
-void		free_map(t_list *map);
-void		free_maps(char **maps);
-void		destroy_data(t_data *data);
+int				ft_isspace(char c);
+int				ft_compare(char *str, char *string);
+char			*b_space(int n);
+char			**new_maps(t_data *data);
+void			add_the_line(t_list *head, char *line);
+char			*remove_jumpline(char *str);
+int				rgb_to_color(int r, int g, int b);
+int				get_rgb(char *str, int j, int count, int val);
+int				check_struct_map(int i, int curser, char **maps);
+int				check_zero_position(char **new_maps);
+int				check_right_left_wall(char **array);
+int				check_first_last_line(t_data *data);
+int				check_element(t_data *data);
+int				check_player(char **maps);
+int				check_map_or_elt(char *str);
+int				map_name(char *av);
+char			**lst_to_str(t_list *map);
+void			parse_info(t_data *data, char *tmp);
+int				parse_map_data(t_data *data);
+int				get_elements(t_data *data, int fd);
+void			init_elmt(t_data *data, char **str);
+void			init_map(t_list **map, char *line);
+void			init_texture(t_texture *texture);
+void			init_data(t_data *data);
+void			free_map(t_list *map);
+void			free_maps(char **maps);
+void			destroy_data(t_data *data);
 
 #endif

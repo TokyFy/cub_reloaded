@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub.h>
+#include "cub.h"
 
 void	draw_line_textured(t_2d_vector *start, t_2d_vector *end, float offset,
 		t_mlx_image *texture)
