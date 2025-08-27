@@ -151,8 +151,11 @@ void	*static_cub(void *ptr)
 	return (cub);
 }
 
-void	init_cub(t_cub *cub)
+int	init_cub(t_cub *cub)
 {
+    if(!check_map_suround(cub))
+            return 0;
+
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WIN_WIDTH, WIN_HEIGTH, "cub3D");
 	cub->buffer = ft_calloc(sizeof(t_mlx_image), 1);
@@ -162,12 +165,54 @@ void	init_cub(t_cub *cub)
 	cub->buffer->addr = mlx_get_data_addr(cub->buffer->img,
 			&cub->buffer->bits_per_pixel, &cub->buffer->line_length,
 			&cub->buffer->endian);
+    return 1;
+}
+
+char gme(t_cub *cub , uint x , uint y)
+{
+    if(x > cub->map_width || y > cub->map_height)
+    {
+        return ' ';
+    }
+
+    return cub->maps[y][x];
+}
+
+int check_map_suround(t_cub* cub)
+{
+    uint i = 0;
+    uint j = 0;
+
+    while(i < cub->map_height)
+    {
+        j = 0;
+        while(j < cub->map_width)
+        {
+            if(gme(cub , j , i) == '0')
+            {
+                if(
+                    gme(cub , j , i - 1) == ' ' ||
+                    gme(cub , j , i + 1) == ' ' ||
+                    gme(cub , j - 1 , i) == ' ' ||
+                    gme(cub , j + 1 , i) == ' '
+                )
+                {
+                        ft_putstr_fd("Error\nNot surrounded Maps\n" , 2);
+                        return 0;
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+
+    return 1;
 }
 
 int	load(t_cub *cub)
 {
 	int	i;
-
+     
 	cub->texture[0] = load_texture(cub, cub->textures[0]);
 	cub->texture[1] = load_texture(cub, cub->textures[1]);
 	cub->texture[2] = load_texture(cub, cub->textures[2]);
@@ -176,7 +221,7 @@ int	load(t_cub *cub)
 	if (cub->texture[0] == NULL || cub->texture[1] == NULL
 		|| cub->texture[2] == NULL || cub->texture[3] == NULL)
 	{
-		ft_putstr_fd("Error : non xpm file found \n", STDERR_FILENO);
+		ft_putstr_fd("Error\nnon xpm file found \n", STDERR_FILENO);
 		while (i < 4)
 		{
 			destroy_image(cub->mlx, cub->texture[i]);
@@ -273,12 +318,11 @@ int	main(int ac, char **av)
 	cub.textures[2] = NULL;
 	cub.textures[3] = NULL;
 
-	if (!parse_map(&cub, av[1]))
+	if (!parse_map(&cub, av[1]) || !init_cub(&cub))
 	{
 		free_cub(&cub);
 		return (1);
 	}
-	init_cub(&cub);
 	init_player(&cub);
 	if (!load(&cub))
 		return (free_cub(&cub), 1);

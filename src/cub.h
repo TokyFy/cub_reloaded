@@ -6,7 +6,7 @@
 /*   By: franaivo <franaivo@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:02:36 by franaivo          #+#    #+#             */
-/*   Updated: 2025/08/25 10:43:56 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/27 10:38:38 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void			free_cub(t_cub *cub);
 void			init_player(t_cub *cub);
 
 int				ft_isspace(char c);
+int             check_map_suround(t_cub* cub);
+char            gme(t_cub *cub , uint x , uint y);
 int				ft_compare(char *str, char *string);
 char			*b_space(int n);
 char			**new_maps(t_data *data);

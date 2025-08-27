@@ -21,7 +21,6 @@ int	check_first_last_line(t_data *data)
 	{
 		if (data->maps[0][j] != '1' && data->maps[0][j] != ' ')
 		{
-			printf("first\n");
 			return (0);
 		}
 		j++;
@@ -32,7 +31,6 @@ int	check_first_last_line(t_data *data)
 		if (data->maps[data->heigth - 1][j] != '1' && data->maps[data->heigth
 			- 1][j] != ' ')
 		{
-			printf("last\n");
 			return (0);
 		}
 		j++;
@@ -53,7 +51,6 @@ int	check_right_left_wall(char **array)
 			j++;
 		if (array[i][j] != '1' || array[i][ft_strlen(array[i]) - 1] != '1')
 		{
-			printf("rigth_left = %d\n", i);
 			return (0);
 		}
 		i++;
