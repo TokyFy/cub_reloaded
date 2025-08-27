@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:43:00 by llalatia          #+#    #+#             */
 /*   Updated: 2024/02/23 15:44:35 by llalatia         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:20:04 by llalatia          #+#    #+#             */
 /*   Updated: 2024/03/04 15:31:49 by llalatia         ###   ########.fr       */

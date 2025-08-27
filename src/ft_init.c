@@ -6,105 +6,99 @@
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:38:37 by llalatia          #+#    #+#             */
-/*   Updated: 2025/08/19 14:05:35 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:06:08 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	init_texture(t_texture *texture)
+static void	ptr_error(void **ptr)
 {
-	texture->path_no = NULL;
-	texture->path_so = NULL;
-	texture->path_we = NULL;
-	texture->path_ea = NULL;
-	texture->cieling = -1;
-	texture->floor = -1;
-}
-
-void	init_data(t_data *data)
-{
-	init_texture(&data->texture);
-	data->heigth = 0;
-	data->width = 0;
-	data->map = NULL;
-	data->texture.path_ea = NULL;
-	data->texture.path_no = NULL;
-	data->texture.path_so = NULL;
-	data->texture.path_we = NULL;
-}
-
-void	init_map(t_list **map, char *line)
-{
-	if (*map == NULL)
-	{
-		*map = ft_lstnew(ft_strdup(line));
-		(*map)->next = NULL;
-	}
-	else
-	{
-		add_the_line(*map, line);
-	}
-}
-
-static void ptr_error(void **ptr)
-{
+	if (*ptr == (void *)-1)
+		return ;
 	free(*ptr);
-	*ptr = (void*)-1;
+	*ptr = (void *)-1;
 }
 
-void	init_elmt(t_data *data, char **str)
+static void	init_texture_path(t_data *data, char **str)
+{
+	char	**path;
+
+	path = NULL;
+	if (ft_compare("NO", str[0]))
+		path = &data->texture.path_no;
+	else if (ft_compare("SO", str[0]))
+		path = &data->texture.path_so;
+	else if (ft_compare("WE", str[0]))
+		path = &data->texture.path_we;
+	else if (ft_compare("EA", str[0]))
+		path = &data->texture.path_ea;
+	else
+		return (ft_error("Unknown map element"));
+	if (*path)
+		return (ptr_error((void *)path));
+	*path = ft_strdup(str[1]);
+}
+
+static void	init_texture_color(t_data *data, char **str)
 {
 	int	i;
 
-	i = 0;
-	if (ft_compare("NO", str[0]))
-	{
-		if (data->texture.path_no)
-			return ptr_error((void*)&data->texture.path_no);
-		data->texture.path_no = ft_strdup(str[1]);
-	}
-	else if (ft_compare("SO", str[0]))
-	{
-		if (data->texture.path_so)
-			return ptr_error((void*)&data->texture.path_so);
-		data->texture.path_so = ft_strdup(str[1]);
-	}
-	else if (ft_compare("WE", str[0]))
-	{
-		if (data->texture.path_we)
-			return ptr_error((void*)&data->texture.path_we);
-		data->texture.path_we = ft_strdup(str[1]);
-	}
-	else if (ft_compare("EA", str[0]))
-	{
-		if (data->texture.path_ea)
-			return ptr_error((void*)&data->texture.path_ea);
-		data->texture.path_ea = ft_strdup(str[1]);
-	}
-	else if (ft_compare("F", str[0]))
+	if (ft_compare("F", str[0]))
 	{
 		i = get_rgb(str[1], 0, 0, 0);
 		if (data->texture.floor != -1)
-        {
-		    data->texture.floor = -2;
-			return ;
-        }
+			return ((void)(data->texture.floor = -2));
 		data->texture.floor = i;
 	}
 	else if (ft_compare("C", str[0]))
 	{
 		i = get_rgb(str[1], 0, 0, 0);
 		if (data->texture.cieling != -1)
-        {
-		    data->texture.cieling = -2;
-			return ;
-        }
+			return ((void)(data->texture.cieling = -2));
 		data->texture.cieling = i;
 	}
 	else
-	{
-		printf("erreur de donnee des element\n");
+		ft_error("Unknown map element");
+}
+
+void	init_elmt(t_data *data, char **str)
+{
+	if (!str || !str[0] || !str[1])
 		return ;
+	if (ft_compare("NO", str[0]) || ft_compare("SO", str[0]) || ft_compare("WE",
+			str[0]) || ft_compare("EA", str[0]))
+		init_texture_path(data, str);
+	else if (ft_compare("F", str[0]) || ft_compare("C", str[0]))
+		init_texture_color(data, str);
+	else
+		ft_error("Unknown map element");
+}
+
+int	load(t_cub *cub)
+{
+	int	i;
+
+	cub->texture[0] = load_texture(cub, cub->textures[0]);
+	cub->texture[1] = load_texture(cub, cub->textures[1]);
+	cub->texture[2] = load_texture(cub, cub->textures[2]);
+	cub->texture[3] = load_texture(cub, cub->textures[3]);
+	i = 0;
+	if (cub->texture[0] == NULL || cub->texture[1] == NULL
+		|| cub->texture[2] == NULL || cub->texture[3] == NULL)
+	{
+		ft_error("Error\nnon xpm file found");
+		while (i < 4)
+		{
+			destroy_image(cub->mlx, cub->texture[i]);
+			cub->texture[i] = NULL;
+			i++;
+		}
+		destroy_image(cub->mlx, cub->buffer);
+		mlx_destroy_window(cub->mlx, cub->win);
+		mlx_destroy_display(cub->mlx);
+		free(cub->mlx);
+		return (0);
 	}
+	return (1);
 }

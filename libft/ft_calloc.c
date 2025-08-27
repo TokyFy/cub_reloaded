@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 10:36:16 by llalatia          #+#    #+#             */
 /*   Updated: 2024/02/28 12:09:51 by llalatia         ###   ########.fr       */

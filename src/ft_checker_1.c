@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_another_checker.c                               :+:      :+:    :+:   */
+/*   ft_checker_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 13:39:44 by llalatia          #+#    #+#             */
-/*   Updated: 2025/07/24 13:40:02 by llalatia         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:02:51 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,70 @@ int	check_struct_map(int i, int curser, char **maps)
 		i++;
 	}
 	return (curser);
+}
+
+char	gme(t_cub *cub, uint x, uint y)
+{
+	if (x > cub->map_width || y > cub->map_height)
+	{
+		return (' ');
+	}
+	return (cub->maps[y][x]);
+}
+
+int	check_map_suround(t_cub *cub)
+{
+	uint	i;
+	uint	j;
+
+	i = 0;
+	j = 0;
+	while (i < cub->map_height)
+	{
+		j = 0;
+		while (j < cub->map_width)
+		{
+			if (gme(cub, j, i) == '0')
+			{
+				if (gme(cub, j, i - 1) == ' ' || gme(cub, j, i + 1) == ' '
+					|| gme(cub, j - 1, i) == ' ' || gme(cub, j + 1, i) == ' ')
+				{
+					ft_error("Not surrounded Maps");
+					return (0);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	parse_map(t_cub *cub, char *path)
+{
+	t_data	*data;
+	int		fd;
+	int		err;
+
+	data = malloc(sizeof(t_data));
+	fd = -1;
+	init_data(data);
+	if (!map_name(path))
+	{
+		ft_error("wrong argument _ cub3d map.cub");
+		return (free(data), 0);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		perror("open");
+		return (free(data), 0);
+	}
+	init_data(data);
+	err = get_elements(data, fd);
+	if (err)
+		bridge(data, cub);
+	destroy_data(data);
+	free(data);
+	return (err);
 }

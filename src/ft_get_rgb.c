@@ -6,7 +6,7 @@
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/24 11:21:47 by llalatia          #+#    #+#             */
-/*   Updated: 2025/07/24 11:22:03 by llalatia         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:07:58 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,48 +17,59 @@ int	rgb_to_color(int r, int g, int b)
 	return ((r << 16) | (g << 8) | b);
 }
 
+static int	parse_value(char *str, int *i)
+{
+	char	code[5];
+	int		j;
+	int		val;
+
+	j = 0;
+	while (str[*i] && (ft_isdigit(str[*i]) || str[*i] == '-' || str[*i] == '+')
+		&& j < 4)
+		code[j++] = str[(*i)++];
+	code[j] = '\0';
+	if (j == 0)
+		return (ft_error("Missing color value"), -1);
+	val = ft_atoi(code);
+	if (val < 0 || val > 255)
+		return (ft_error("Invalid color code"), -1);
+	return (val);
+}
+
+static void	rgb_init(int *r, int *g, int *b)
+{
+	*r = -1;
+	*g = -1;
+	*b = -1;
+}
+
 int	get_rgb(char *str, int j, int count, int val)
 {
-	int		r;
-	int		g;
-	int		b;
-	int		i;
-	char	*code;
+	int	r;
+	int	g;
+	int	b;
+	int	i;
 
-	r = -1;
-	g = -1;
-	b = -1;
-	i = 0;
-	val = 0;
-	count = 0;
-	code = malloc(sizeof(char) * 5);
-	if (!code)
-		return (0);
-	while (str[i] != '\0')
+	i = 0 * j;
+	rgb_init(&r, &g, &b);
+	while (str[i])
 	{
-		j = 0;
-		while (str[i] && (ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+'))
-		{
-			code[j++] = str[i];
-			i++;
-		}
-		code[j] = '\0';
-		val = ft_atoi(code);
-		if (val < 0 || val > 255)
-			return (printf("Code color error : "), free(code), -1);
+		val = parse_value(str, &i);
+		if (val == -1)
+			return (-1);
 		if (r == -1)
 			r = val;
 		else if (g == -1)
 			g = val;
 		else if (b == -1)
 			b = val;
-		count += 1;
+		count++;
 		while (str[i] && str[i] == ',')
 			i++;
 	}
 	if (count != 3)
-		return (printf("Color code error : \n"), free(code), -1);
-	return (free(code), rgb_to_color(r, g, b));
+		return (ft_error("RGB must contain exactly 3 values"), -1);
+	return (rgb_to_color(r, g, b));
 }
 
 char	*remove_jumpline(char *str)

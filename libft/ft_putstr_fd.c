@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 09:33:41 by llalatia          #+#    #+#             */
 /*   Updated: 2024/03/05 09:44:22 by llalatia         ###   ########.fr       */

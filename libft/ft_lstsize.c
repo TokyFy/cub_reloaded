@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:53:58 by llalatia          #+#    #+#             */
 /*   Updated: 2024/05/27 16:14:43 by llalatia         ###   ########.fr       */

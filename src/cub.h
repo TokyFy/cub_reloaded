@@ -6,7 +6,7 @@
 /*   By: franaivo <franaivo@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:02:36 by franaivo          #+#    #+#             */
-/*   Updated: 2025/08/27 10:38:38 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:09:47 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "libft.h"
+# include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -141,8 +142,9 @@ void			free_cub(t_cub *cub);
 void			init_player(t_cub *cub);
 
 int				ft_isspace(char c);
-int             check_map_suround(t_cub* cub);
-char            gme(t_cub *cub , uint x , uint y);
+void			ft_error(const char *error);
+int				check_map_suround(t_cub *cub);
+char			gme(t_cub *cub, uint x, uint y);
 int				ft_compare(char *str, char *string);
 char			*b_space(int n);
 char			**new_maps(t_data *data);
@@ -169,5 +171,12 @@ void			init_data(t_data *data);
 void			free_map(t_list *map);
 void			free_maps(char **maps);
 void			destroy_data(t_data *data);
+char			**lst_to_str(t_list *map);
+void			free_strs(char **strs);
+void			bridge(t_data *data, t_cub *cub);
+int				chartodeg(char dir);
+int				parse_map(t_cub *cub, char *path);
+int				init_cub(t_cub *cub);
+int				load(t_cub *cub);
 
 #endif

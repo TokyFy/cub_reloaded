@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llalatia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:15:32 by llalatia          #+#    #+#             */
-/*   Updated: 2024/02/23 15:38:22 by llalatia         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:47:28 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		c -= 32;
 	return (c);
 }
-/*int	main(void)
-{
-	printf("%c", ft_toupper('b'));
-	return (0);
-}*/

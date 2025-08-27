@@ -6,7 +6,7 @@
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:16:45 by llalatia          #+#    #+#             */
-/*   Updated: 2025/08/27 09:37:33 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:06:00 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ int	map_name(char *av)
 		return (0);
 	if (av[i - 4] == '.' && av[i - 3] == 'c' && av[i - 2] == 'u' && av[i
 			- 1] == 'b')
+	{
+		if (av[i - 5] == '/')
+			return (0);
 		return (1);
+	}
 	return (0);
 }
 
@@ -64,37 +68,45 @@ int	check_player(char **maps)
 	return (count);
 }
 
-int	check_element(t_data *data)
+int	check_color_element(t_data *data)
 {
-	if (data->texture.path_no == NULL || data->texture.path_no == (char*)-1)
-    {
-        data->texture.path_no = NULL;
-		return (printf("PATH_NO ERROR\n"), 0);
-    }
-	else if (data->texture.path_so == NULL || data->texture.path_so == (char*)-1)
-    {
-        data->texture.path_so = NULL;
-		return (printf("PATH_SO ERROR\n"), 0);
-    }
-	else if (data->texture.path_ea == NULL || data->texture.path_ea == (char*)-1)
-    {
-        data->texture.path_ea = NULL;
-		return (printf("PATH_EA ERROR\n") , 0);
-    }
-	else if (data->texture.path_we == NULL || data->texture.path_we == (char*)-1)
-    {
-        data->texture.path_we = NULL;
-		return (printf("PATH_WE ERROR\n") , 0);
-    }
-	else if (data->texture.cieling <= -1)
+	if (data->texture.cieling <= -1)
 	{
-		printf("PATH_CIELING ERROR\n");
+		ft_error("Invalid cieling color");
 		return (0);
 	}
-	else if (data->texture.floor <= -1)
+	if (data->texture.floor <= -1)
 	{
-		printf("PATH_FLOOR ERROR\n");
+		ft_error("Invalid floor color");
 		return (0);
 	}
 	return (1);
+}
+
+int	check_element(t_data *data)
+{
+	if (data->texture.path_no == NULL || data->texture.path_no == (char *)-1)
+	{
+		data->texture.path_no = NULL;
+		return (ft_error("Texture NO not found"), 0);
+	}
+	else if (data->texture.path_so == NULL
+		|| data->texture.path_so == (char *)-1)
+	{
+		data->texture.path_so = NULL;
+		return (ft_error("Texture SO not found"), 0);
+	}
+	else if (data->texture.path_ea == NULL
+		|| data->texture.path_ea == (char *)-1)
+	{
+		data->texture.path_ea = NULL;
+		return (ft_error("Texture EA not found"), 0);
+	}
+	else if (data->texture.path_we == NULL
+		|| data->texture.path_we == (char *)-1)
+	{
+		data->texture.path_we = NULL;
+		return (ft_error("Texture WE not found"), 0);
+	}
+	return (check_color_element(data));
 }

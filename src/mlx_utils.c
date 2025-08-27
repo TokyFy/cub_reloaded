@@ -6,7 +6,7 @@
 /*   By: sravonin <sravonin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:01:20 by franaivo          #+#    #+#             */
-/*   Updated: 2025/04/16 13:04:03 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:06:21 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	put_pixel_img(t_mlx_image *img, unsigned int x, unsigned int y,
 		return ;
 	if (x > (unsigned int)img->width || y > (unsigned int)img->heigth)
 	{
-		ft_putstr_fd("_error : pixel bound violated\n", STDERR_FILENO);
+		ft_error("pixel bound violated");
 		return ;
 	}
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
@@ -93,5 +93,5 @@ t_cub	*mlx_windows(int width, int height, char *title)
 unsigned int	get_pixel_img(t_mlx_image *img, int x, int y)
 {
 	return (*(unsigned int *)((img->addr + (y * img->line_length) + (x
-						* img->bits_per_pixel / 8))));
+				* img->bits_per_pixel / 8))));
 }

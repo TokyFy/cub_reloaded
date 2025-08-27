@@ -25,8 +25,8 @@ int	ft_compare(char *str, char *string)
 	int	i;
 
 	i = 0;
-	if(ft_strlen(str) != ft_strlen(string))
-		return 0;
+	if (ft_strlen(str) != ft_strlen(string))
+		return (0);
 	while (str[i] != '\0')
 	{
 		if (str[i] != string[i])

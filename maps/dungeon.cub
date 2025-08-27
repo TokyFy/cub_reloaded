@@ -1,18 +1,15 @@
 F 76,76,76
 C 99,99,50
 
-NO textures/N.xpm
-SO textures/S.xpm
+
+SO            textures/S.xpm
+                               NO textures/N.xpm
 WE textures/W.xpm
 EA textures/E.xpm
 
-1111111111111111
-1000000000000001
-1111111111101111
-          101 11
-          111111
-
-          111111
-          10000111111111
-          100000000000W1
-          11111111111111
+111111
+1E0001
+100001
+100001
+111111
+   111111 

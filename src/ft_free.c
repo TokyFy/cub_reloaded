@@ -6,7 +6,7 @@
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 13:50:30 by llalatia          #+#    #+#             */
-/*   Updated: 2025/07/23 13:50:39 by llalatia         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:04:54 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,20 @@ void	destroy_data(t_data *data)
 	free(data->texture.path_so);
 	free(data->texture.path_we);
 	free_maps(data->maps);
+}
+
+void	ft_error(const char *error)
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd((char *)error, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+}
+
+void	destroy_image(void *mlx, t_mlx_image *img)
+{
+	if (!img)
+		return ;
+	mlx_destroy_image(mlx, img->img);
+	free(img);
+	return ;
 }
