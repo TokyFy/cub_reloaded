@@ -6,7 +6,7 @@
 /*   By: franaivo <franaivo@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:02:36 by franaivo          #+#    #+#             */
-/*   Updated: 2025/08/27 16:09:47 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:15:29 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 # define WIN_WIDTH 1040
@@ -140,6 +142,7 @@ void			destroy_image(void *mlx, t_mlx_image *img);
 void			normalize_maps(t_cub *cub);
 void			free_cub(t_cub *cub);
 void			init_player(t_cub *cub);
+uint64_t		timestamp_in_ms(void);
 
 int				ft_isspace(char c);
 void			ft_error(const char *error);

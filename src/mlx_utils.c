@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sravonin <sravonin@student.42antananari    +#+  +:+       +#+        */
+/*   By: franaivo <franaivo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:01:20 by franaivo          #+#    #+#             */
 /*   Updated: 2025/08/27 14:06:21 by franaivo         ###   ########.fr       */

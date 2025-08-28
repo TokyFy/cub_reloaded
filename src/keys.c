@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sravonin <sravonin@student.42antananari    +#+  +:+       +#+        */
+/*   By: franaivo <franaivo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 09:39:14 by franaivo          #+#    #+#             */
-/*   Updated: 2025/03/19 13:12:18 by sravonin         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:06:21 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

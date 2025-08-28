@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sravonin <sravonin@student.42antananari    +#+  +:+       +#+        */
+/*   By: franaivo <franaivo@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:08:47 by franaivo          #+#    #+#             */
-/*   Updated: 2025/04/16 08:26:36 by sravonin         ###   ########.fr       */
+/*   Updated: 2025/04/16 08:26:36 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,11 +6,12 @@
 /*   By: franaivo <franaivo@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:08:39 by franaivo          #+#    #+#             */
-/*   Updated: 2025/02/10 10:08:40 by franaivo         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:11:50 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+#include <stdint.h>
 
 void	threed_schene(t_cub *cub)
 {
@@ -64,9 +65,12 @@ void	render_floor_ceil(t_cub *cub, uint color_ceil, uint color_floor)
 
 int	render_next_frame(void *ptr)
 {
-	t_cub		*cub;
-	t_2d_vector	zero;
+	t_cub			*cub;
+	t_2d_vector		zero;
+	static uint64_t	updated_at = 0;
 
+	if (timestamp_in_ms() - updated_at < (uint64_t)(1000 / 60))
+		return (0);
 	(void)zero;
 	zero.x = 32;
 	zero.y = WIN_HEIGTH - (MAP_GRID_SIZE * 6) - 32;

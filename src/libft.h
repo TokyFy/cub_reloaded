@@ -6,7 +6,7 @@
 /*   By: llalatia <llalatia@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 15:39:59 by llalatia          #+#    #+#             */
-/*   Updated: 2024/05/27 16:33:16 by llalatia         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:06:58 by franaivo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
