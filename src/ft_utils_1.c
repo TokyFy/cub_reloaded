@@ -50,14 +50,31 @@ void	free_strs(char **strs)
 	free(strs);
 }
 
+void	reset_cub(t_cub *cub)
+{
+	cub->mlx = NULL;
+	cub->win = NULL;
+	cub->buffer = NULL;
+	cub->maps = NULL;
+	cub->player = NULL;
+	cub->texture[0] = NULL;
+	cub->texture[1] = NULL;
+	cub->texture[2] = NULL;
+	cub->texture[3] = NULL;
+	cub->textures[0] = NULL;
+	cub->textures[1] = NULL;
+	cub->textures[2] = NULL;
+	cub->textures[3] = NULL;
+}
+
 void	bridge(t_data *data, t_cub *cub)
 {
 	cub->ceil_color = data->texture.cieling;
 	cub->floor_color = data->texture.floor;
-	cub->textures[0] = ft_strdup(data->texture.path_ea);
-	cub->textures[1] = ft_strdup(data->texture.path_no);
-	cub->textures[2] = ft_strdup(data->texture.path_so);
-	cub->textures[3] = ft_strdup(data->texture.path_we);
+	cub->textures[0] = ft_strdup(data->texture.path_no);
+	cub->textures[1] = ft_strdup(data->texture.path_so);
+	cub->textures[2] = ft_strdup(data->texture.path_we);
+	cub->textures[3] = ft_strdup(data->texture.path_ea);
 	cub->map_height = data->heigth;
 	cub->map_width = data->width;
 	cub->maps = data->maps;
@@ -71,12 +88,12 @@ void	bridge(t_data *data, t_cub *cub)
 int	chartodeg(char dir)
 {
 	if (dir == 'W')
-		return (0);
+		return (180);
 	if (dir == 'S')
 		return (90);
 	if (dir == 'N')
 		return (270);
 	if (dir == 'E')
-		return (180);
+		return (0);
 	return (0);
 }

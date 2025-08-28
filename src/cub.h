@@ -181,5 +181,6 @@ int				chartodeg(char dir);
 int				parse_map(t_cub *cub, char *path);
 int				init_cub(t_cub *cub);
 int				load(t_cub *cub);
+void			reset_cub(t_cub *cub);
 
 #endif

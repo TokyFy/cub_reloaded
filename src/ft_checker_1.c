@@ -95,8 +95,8 @@ int	parse_map(t_cub *cub, char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("open");
-		return (free(data), 0);
+		ft_error("Can't open config file");
+		return (perror(path), free(data), 0);
 	}
 	init_data(data);
 	err = get_elements(data, fd);

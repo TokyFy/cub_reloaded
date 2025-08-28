@@ -28,6 +28,7 @@ int	main(int ac, char **av)
 {
 	t_cub	cub;
 
+	reset_cub(&cub);
 	if (ac != 2)
 	{
 		ft_error("usage: ./cub3D <file.cub>");

@@ -87,7 +87,7 @@ int	load(t_cub *cub)
 	if (cub->texture[0] == NULL || cub->texture[1] == NULL
 		|| cub->texture[2] == NULL || cub->texture[3] == NULL)
 	{
-		ft_error("Error\nnon xpm file found");
+		ft_error("Non xpm file found");
 		while (i < 4)
 		{
 			destroy_image(cub->mlx, cub->texture[i]);
