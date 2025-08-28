@@ -40,6 +40,7 @@ char	get_map_type(int x, int y)
 	return (cub->maps[y][x]);
 }
 
+# ifdef BONUS
 void	minimaps(t_cub *cub, t_2d_vector zero)
 {
 	int	i;
@@ -68,3 +69,13 @@ void	minimaps(t_cub *cub, t_2d_vector zero)
 		cub->floor_color);
 	minimaps_direction(cub, zero);
 }
+# endif
+
+# ifndef BONUS
+void	minimaps(t_cub *cub, t_2d_vector zero)
+{
+    (void)(cub);
+    (void)(zero);
+    return;
+}
+# endif
