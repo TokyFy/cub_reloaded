@@ -1,7 +1,7 @@
 NAME 			= cub3D
 BONUS			= cub3D_bonus
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -g
+CFLAGS			= -Wall -Wextra -Werror
 RM 				= rm -f
 
 OBJ_DIR 		= ./obj/
